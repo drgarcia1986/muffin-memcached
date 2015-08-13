@@ -1,6 +1,6 @@
 import re
 from os import path as op
-from setuptools import setup, find_packages
+from setuptools import setup
 
 
 def _read(fname):
@@ -43,6 +43,6 @@ setup(
         'Topic :: Software Development :: Testing',
         'Topic :: Utilities',
     ],
-    packages=find_packages(),
+    py_modules=['muffin_memcached'],
     install_requires=install_requires,
 )
