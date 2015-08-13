@@ -11,7 +11,7 @@ Muffin-Memcached -- A simple memcached plugin for muffin_ framework.
     :target: http://travis-ci.org/drgarcia1986/muffin-memcached
     :alt: Build Status
 
-.. image:: http://img.shields.io/coveralls/drgarcia1986/muffin-cache.svg?style=flat-square
+.. image:: http://img.shields.io/coveralls/drgarcia1986/muffin-memcached.svg?style=flat-square
     :target: https://coveralls.io/r/drgarcia1986/muffin-memcached
     :alt: Coverals
 
@@ -61,7 +61,7 @@ And use *memcached* plugin:
         
         @asyncio.coroutine
         def get(self, request):
-            value = yield from app.ps.memcached.get('foo')
+            value = yield from app.ps.memcached.get(b'foo')
             return value.decode()
     
 .. _bugtracker:
