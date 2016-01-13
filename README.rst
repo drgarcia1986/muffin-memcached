@@ -11,17 +11,13 @@ Muffin-Memcached -- A simple memcached plugin for muffin_ framework.
     :target: http://travis-ci.org/drgarcia1986/muffin-memcached
     :alt: Build Status
 
-.. image:: http://img.shields.io/coveralls/drgarcia1986/muffin-memcached.svg?style=flat-square
-    :target: https://coveralls.io/r/drgarcia1986/muffin-memcached
-    :alt: Coverals
-
 .. _requirements:
 
 Requirements
 =============
 
 - python >= 3.4
-- muffin >= 0.0.99
+- muffin >= 0.5.5
 
 .. _installation:
 
@@ -30,14 +26,14 @@ Installation
 
 **Muffin-Memcached** should be installed using pip: ::
 
-    pip install git+https://github.com/drgarcia1986/muffin-memcached.git
+    pip install muffin-memcached
 
 .. _usage:
 
 Usage
 =====
 
-Add Muffin-Memcached_ and Muffin-Cache to muffin plugin list:
+Add *muffin-memcached* to muffin plugin list:
 
 .. code-block:: python
 
