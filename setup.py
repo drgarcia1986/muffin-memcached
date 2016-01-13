@@ -16,7 +16,8 @@ _version = re.search(r'^__version__\s*=\s*"(.*)"', _meta, re.M).group(1)
 
 install_requires = [
     l for l in _read('requirements.txt').split('\n')
-    if l and not l.startswith('#')]
+    if l and not l.startswith('#') and not l.startswith('-')
+]
 
 setup(
     name=_project,
@@ -25,7 +26,7 @@ setup(
     description=_read('DESCRIPTION'),
     long_description=_read('README.rst'),
     platforms=('Any'),
-    keywords = "asyncio aiohttp muffin memcached".split(),  # noqa
+    keywords = 'asyncio aiohttp muffin memcached'.split(),  # noqa
 
     author='Diego Garcia',
     author_email='drgarcia1986@gmail.com',
@@ -35,7 +36,6 @@ setup(
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
         'Natural Language :: English',
-        'Natural Language :: Russian',
         'Operating System :: OS Independent',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python',
