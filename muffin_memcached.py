@@ -1,4 +1,5 @@
 import asyncio
+import json
 
 import aiomcache
 from muffin.plugins import BasePlugin
@@ -45,6 +46,30 @@ class Plugin(BasePlugin):
     def finish(self, app):
         """ Close self connections. """
         self.conn.close()
+
+    @asyncio.coroutine
+    def get(self, key):
+        if not isinstance(key, bytes):
+            key = key.encode()
+
+        value = yield from self.conn.get(key)
+        if isinstance(value, bytes):
+            value = value.decode()
+            try:
+                value = json.loads(value)
+            except ValueError:
+                pass
+        return value
+
+    @asyncio.coroutine
+    def set(self, key, value, *args, **kwargs):
+        if not isinstance(key, bytes):
+            key = key.encode()
+        if isinstance(value, str):
+            value = value.encode()
+        elif isinstance(value, dict) or isinstance(value, list):
+            value = json.dumps(value).encode()
+        return (yield from self.conn.set(key, value, *args, **kwargs))
 
     def __getattr__(self, name):
         """ Proxy attribute to self connection. """

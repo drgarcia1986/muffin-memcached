@@ -17,8 +17,26 @@ def test_plugin_register(app):
 
 @pytest.mark.async
 def test_memcached_set_get(app):
-    key = b'key'
-    value = b'value'
+    key = 'key'
+    value = 'value'
+    yield from app.ps.memcached.set(key, value)
+    value_returned = yield from app.ps.memcached.get(key)
+    assert value_returned == value
+
+
+@pytest.mark.async
+def test_memcached_set_get_with_dict(app):
+    key = 'key'
+    value = {'value': 'test'}
+    yield from app.ps.memcached.set(key, value)
+    value_returned = yield from app.ps.memcached.get(key)
+    assert value_returned == value
+
+
+@pytest.mark.async
+def test_memcached_set_get_with_list(app):
+    key = 'key'
+    value = ['value', 'test']
     yield from app.ps.memcached.set(key, value)
     value_returned = yield from app.ps.memcached.get(key)
     assert value_returned == value
