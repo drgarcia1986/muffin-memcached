@@ -48,18 +48,28 @@ Add *muffin-memcached* to muffin plugin list:
         )
     )
 
-And use *memcached* plugin: 
+And use *memcached* plugin:
 
 .. code-block:: python
 
     @app.register('/cached')
     class Example(muffin.Handler):
-        
+
         @asyncio.coroutine
         def get(self, request):
-            value = yield from app.ps.memcached.get(b'foo')
-            return value.decode()
-    
+            return (yield from app.ps.memcached.get('foo'))
+
+.. _options:
+
+Options
+-------
+
+========================== ==============================================================
+ *MEMCACHED_HOST*          Host of memcached server (``127.0.0.1``)
+ *MEMCACHED_PORT*          Port of memcached server (``11211``)
+ *MEMCACHED_POOLSIZE*      Size of connection pool  (``1``)
+========================== ==============================================================
+
 .. _bugtracker:
 
 Bug tracker
