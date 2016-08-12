@@ -7,7 +7,7 @@ flake8:
 	flake8 muffin_memcached.py
 
 test: clean flake8
-	py.test -x tests.py
+	py.test -x tests.py --pdb
 
 test-debug: clean
 	py.test -x --pdb tests.py

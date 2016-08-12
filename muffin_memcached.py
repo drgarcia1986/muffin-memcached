@@ -1,7 +1,7 @@
 import asyncio
-import json
 
 import aiomcache
+import jsonpickle
 from muffin.plugins import BasePlugin
 
 
@@ -54,21 +54,14 @@ class Plugin(BasePlugin):
 
         value = yield from self.conn.get(key)
         if isinstance(value, bytes):
-            value = value.decode()
-            try:
-                value = json.loads(value)
-            except ValueError:
-                pass
+            return jsonpickle.decode(value.decode('utf-8'))
         return value
 
     @asyncio.coroutine
     def set(self, key, value, *args, **kwargs):
         if not isinstance(key, bytes):
             key = key.encode()
-        if isinstance(value, str):
-            value = value.encode()
-        elif isinstance(value, (dict, list)):
-            value = json.dumps(value).encode()
+        value = jsonpickle.encode(value).encode()
         return (yield from self.conn.set(key, value, *args, **kwargs))
 
     def __getattr__(self, name):
