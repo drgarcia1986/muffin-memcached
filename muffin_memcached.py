@@ -5,7 +5,7 @@ import jsonpickle
 from muffin.plugins import BasePlugin
 
 
-__version__ = "0.0.2"
+__version__ = "0.1.0"
 __project__ = "muffin-memcached"
 __author__ = "Diego Garcia <drgarcia1986@gmail.com>"
 __license__ = "MIT"
@@ -17,7 +17,7 @@ class Plugin(BasePlugin):
 
     name = 'memcached'
     defaults = {
-        'host': '127.0.1.0',
+        'host': '127.0.0.1',
         'poolsize': 1,
         'port': 11211,
     }
