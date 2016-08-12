@@ -17,7 +17,7 @@ class Plugin(BasePlugin):
 
     name = 'memcached'
     defaults = {
-        'host': '127.0.0.1',
+        'host': '127.0.1.0',
         'poolsize': 1,
         'port': 11211,
     }
