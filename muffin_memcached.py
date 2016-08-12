@@ -67,7 +67,7 @@ class Plugin(BasePlugin):
             key = key.encode()
         if isinstance(value, str):
             value = value.encode()
-        elif isinstance(value, dict) or isinstance(value, list):
+        elif isinstance(value, (dict, list)):
             value = json.dumps(value).encode()
         return (yield from self.conn.set(key, value, *args, **kwargs))
 
