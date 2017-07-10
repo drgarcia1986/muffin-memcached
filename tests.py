@@ -40,3 +40,11 @@ def test_memcached_set_get_with_list(app):
     yield from app.ps.memcached.set(key, value)
     value_returned = yield from app.ps.memcached.get(key)
     assert value_returned == value
+
+@pytest.mark.async
+def test_memcached_delete(app):
+    key = 'key'
+    yield from app.ps.memcached.set(key, 'foo')
+    yield from app.ps.memcached.delete(key)
+    value_returned = yield from app.ps.memcached.get(key)
+    assert value_returned is None
