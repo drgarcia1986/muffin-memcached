@@ -64,6 +64,12 @@ class Plugin(BasePlugin):
         value = jsonpickle.encode(value).encode()
         return (yield from self.conn.set(key, value, *args, **kwargs))
 
+    @asyncio.coroutine
+    def delete(self, key):
+        if not isinstance(key, bytes):
+            key = key.encode()
+        return (yield from self.conn.delete(key))
+
     def __getattr__(self, name):
         """ Proxy attribute to self connection. """
         return getattr(self.conn, name)
